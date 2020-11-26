@@ -3,6 +3,10 @@
 # Prevent users from accidentally running this entire file as a script
 exit 0
 
+# When browsing the contents of a Dockerfile from the terminal, it can sometimes
+# be useful to also see the line numbers
+cat -n Dockerfile
+
 # RHEL/CentOS running devicemapper as the Docker storage driver, in which devicemapper begins
 # gobbling up disk space. WARNING: This will nuke Docker and all containers/images!
 # See also: https://stackoverflow.com/questions/37672018/clean-docker-environment-devicemapper
