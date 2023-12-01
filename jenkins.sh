@@ -7,10 +7,21 @@ exit 0
 
 ########## COMMANDS RUN IN THE JENKINS SCRIPT CONSOLE <Jenkins URL>/script ##########
 
+# Get a list of all jobs
+Jenkins.instance.getAllItems(Job.class).each { jobItem ->
+  println jobItem.fullName
+}
+
+# Get a list of all jobs which are not marked Disabled
+Jenkins.instance.getAllItems(Job.class).each { jobItem ->
+  if(!jobItem.isDisabled()) {
+    println(jobItem.getFullName())
+  }
+}
+
 # Get a list of installed plugins in shortName:version format (good for plugins.txt)
-Jenkins.instance.pluginManager.plugins.each{
-  plugin -> 
-    println ("${plugin.getShortName()}:${plugin.getVersion()}")
+Jenkins.instance.pluginManager.plugins.each { pluginItem -> 
+  println("${pluginItem.getShortName()}:${pluginItem.getVersion()}")
 }
 
 # Decrypt stored credentials
